@@ -5,22 +5,26 @@ import { NoImage } from '../../assets';
 
 function PendingUser({ userData }) {
   console.log(userData);
+
   const postUser = (status) => {
     const config = {
       method: 'put',
-      url: 'http://13.209.36.143:8081/admin/user',
+      url: `http://13.209.36.143:8081/admin/${
+        userData.authId
+      }?signupStatus=${String(status)}`,
       headers: {
         Authorization: localStorage.getItem('accessToken'),
       },
-      data: {
-        signupStatus: 'ACCEPT',
-      },
+      data: {},
     };
     axios(config).then((response) => {
       console.log(response);
     });
+    window.location.reload();
   };
+
   useEffect(() => {}, []);
+
   return (
     <UserContainer>
       {userData.imgUrl ? (
@@ -41,7 +45,7 @@ function PendingUser({ userData }) {
         </AcceptButton>
         <RefuseButton
           onClick={() => {
-            postUser('REFUSE');
+            postUser('REFUSAL');
           }}
         >
           거절
@@ -50,6 +54,7 @@ function PendingUser({ userData }) {
     </UserContainer>
   );
 }
+
 const UserContainer = styled.div`
   display: flex;
   width: 400px;

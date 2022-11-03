@@ -4,7 +4,7 @@ import axios from 'axios';
 import PendingUser from '../components/user/pendingUser';
 
 const Main = () => {
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     if (localStorage.getItem('accessToken') === null) {
