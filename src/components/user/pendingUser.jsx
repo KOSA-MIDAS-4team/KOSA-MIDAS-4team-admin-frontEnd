@@ -20,7 +20,9 @@ function PendingUser({ userData }) {
     axios(config).then((response) => {
       console.log(response);
     });
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 50);
   };
 
   useEffect(() => {}, []);
